@@ -31,9 +31,16 @@ st.session_state.setdefault("response", "" ) # to store the response
 
 st.title("Travel Bot")
 
-st.write("Ask me anything about your travel plans!")
 
-st.text_area(label="Response", value=st.session_state.get("response"), height=200)
+col1, col2 = st.columns([3, 1])
+with col1:
+    st.write("Ask me anything about your travel plans!")
+with col2:
+    if st.button("Clear Response"):
+        st.session_state.response = ""
+        st.rerun()
+
+st.write(f"""{st.session_state.get("response")}""")
 
 place = st.text_input("Your place of visit:")
 
